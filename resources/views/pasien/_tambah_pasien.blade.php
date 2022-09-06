@@ -11,11 +11,11 @@
                     @csrf
                     <div class="form-group">
                         <label for="nama">Nama Pasien</label>
-                        <input type="text" class="form-control" name="name">
+                        <input type="text" class="form-control" name="nama">
                     </div>
                     <div class="form-group">
                         <label for="umur">Umur Pasien</label>
-                        <input type="text" class="form-control" name="umur">
+                        <input type="number" class="form-control" name="umur">
                     </div>
                     <div class="form-group">
                         <label for="alamat">Alamat</label>

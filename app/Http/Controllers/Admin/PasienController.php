@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Pasien;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PasienController extends Controller
 {
@@ -33,7 +34,22 @@ class PasienController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator:: make($request->all(), [
+            'nama' => 'required',
+            'umur' => 'required',
+            'alamat' => 'required'
+        ]);
+        // dd($request->all());
+
+        if($validator->fails()){
+            return redirect()->back()->with('error', $validator->errors()->first());
+        }
+
+
+        Pasien::create($request->all());
+        return redirect('/admin/pasien');
+        
+
     }
 
     /**

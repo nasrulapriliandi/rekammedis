@@ -37,7 +37,7 @@
                                 @foreach($pasiens as $pasien)
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
-                                        <td>{{ $pasien->name }}</td>
+                                        <td>{{ $pasien->nama }}</td>
                                         <td>{{ $pasien->umur }}</td>
                                         <td>{{ $pasien->alamat }}</td>
                                         <td>

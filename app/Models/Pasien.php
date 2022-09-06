@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pasien extends Model
 {
     use HasFactory;
-    protected $fillable = ['nanma','umur','alamat'];
+    protected $fillable = ['nama','umur','alamat'];
 
     public function rekammedis(){
         return $this->hasMany(Rekammedis::class);
