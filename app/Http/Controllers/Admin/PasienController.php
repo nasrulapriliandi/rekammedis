@@ -35,9 +35,11 @@ class PasienController extends Controller
     public function store(Request $request)
     {
         $validator = Validator:: make($request->all(), [
+            'norekammedis' => 'required',
             'nama' => 'required',
             'umur' => 'required',
-            'alamat' => 'required'
+            'alamat' => 'required',
+            'jeniskelamin' => 'required'
         ]);
         // dd($request->all());
 
@@ -48,7 +50,7 @@ class PasienController extends Controller
 
         Pasien::create($request->all());
         return redirect('/admin/pasien');
-        
+
 
     }
 

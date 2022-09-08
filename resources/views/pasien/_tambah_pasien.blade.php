@@ -10,6 +10,10 @@
                 <form action="{{ route('pasien.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
+                        <label for="nama">No Rekam Medis</label>
+                        <input type="text" class="form-control" name="norekammedis">
+                    </div>
+                    <div class="form-group">
                         <label for="nama">Nama Pasien</label>
                         <input type="text" class="form-control" name="nama">
                     </div>
@@ -20,6 +24,10 @@
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
                         <input type="text" class="form-control" name="alamat">
+                    </div>
+                    <div class="form-group">
+                        <label for="alamat">Jenis Kelamin</label>
+                        <input type="text" class="form-control" name="jeniskelamin">
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary float-right">Tambah</button>

@@ -18,19 +18,19 @@
                             <input type="text" class="form-control" name="rekammedis" value="{{ old('rekammedis', $pasien->rekammedis) }}">
                         </div>
                         <div class="form-group">
-                            <label for="tanggal">Tanggal Daftar</label>
+                            <label for="tanggal">Nama Pasien</label>
                             <input type="text" class="form-control" name="tanggal" value="{{ old('tanggal', $pasien->tanggal) }}">
                         </div>
                         <div class="form-group">
-                            <label for="nama">Nama Pasien</label>
+                            <label for="nama">Umur Pasien</label>
                             <input type="text" class="form-control" name="nama" value="{{ old('nama', $pasien->nama) }}">
                         </div>
                         <div class="form-group">
-                            <label for="umur">Umur Pasien</label>
+                            <label for="umur">Alamat Pasien</label>
                             <input type="text" class="form-control" name="umur" value="{{ old('umur', $pasien->umur) }}">
                         </div>
                         <div class="form-group">
-                            <label for="alamat">alamat</label>
+                            <label for="alamat">Jeniskelamin</label>
                             <input type="text" class="form-control" name="alamat" value="{{ old('alamat', $pasien->alamat) }}">
                         </div>
                         <div class="form-group">
