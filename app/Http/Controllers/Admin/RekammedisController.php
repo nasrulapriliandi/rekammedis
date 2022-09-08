@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Diagnosa;
+use App\Models\Obat;
 use App\Models\Pasien;
+use App\Models\Rekammedis;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class PasienController extends Controller
+class RekammedisController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +19,11 @@ class PasienController extends Controller
      */
     public function index()
     {
-        $pasiens = Pasien::all();
-        return view('pasien.pasien', compact('pasiens'));
+        $rekammedis = Rekammedis::with('pasien', 'diagnosa', 'obat')->get();
+        $pasien = Pasien::all();
+        $diagnosa = Diagnosa::all();
+        $obat = Obat::all();
+        return view('rekammedis.rekammedis', compact('rekammedis', 'pasien', 'diagnosa', 'obat'));
     }
 
     /**
@@ -25,6 +31,10 @@ class PasienController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function create()
+    {
+        //
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,18 +45,19 @@ class PasienController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nama' => 'required',
-            'umur' => 'required',
-            'alamat' => 'required',
+            'pasien_id' => 'required',
+            'diagnosa_id' => 'required',
+            'obat_id' => 'required',
+            'tgl_berobat' => 'required'
         ]);
 
         if($validator->fails()) {
             return redirect()->back()->with('error', $validator->errors()->first());
         }
 
-        Pasien::create($request->all());
+        Rekammedis::create($request->all());
 
-        return redirect('/admin/pasien');
+        return redirect('/admin/rekammedis');
     }
 
     /**
@@ -81,19 +92,20 @@ class PasienController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'nama' => 'required',
-            'umur' => 'required',
-            'alamat' => 'required'
+            'pasien_id' => 'required',
+            'diagnosa_id' => 'required',
+            'obat_id' => 'required',
+            'tgl_berobat' => 'required'
         ]);
 
         if($validator->fails()) {
             return redirect()->back()->with('error', $validator->errors()->first());
         }
 
-        $pasien = Pasien::where('id', $id)->firstOrFail();
-        $pasien->update($request->all());
+        $rekam = Rekammedis::where('id', $id)->firstOrFail();
+        $rekam->update($request->all());
+        return redirect()->back()->with('success', 'Data rekam medis berhasil diubah');
 
-        return redirect()->back()->with('success', 'Data pasien berhasil diubah');
     }
 
     /**
@@ -104,8 +116,8 @@ class PasienController extends Controller
      */
     public function destroy($id)
     {
-        $pasien = Pasien::where('id', $id)->firstOrFail();
-        $pasien->delete();
-        return redirect()->back()->with('success', 'Data pasien berhasil dihapus');
+        $rekam = Rekammedis::where('id', $id)->firstOrFail();
+        $rekam->delete();
+        return redirect()->back()->with('success', 'Data rekam medis berhasil dihapus');
     }
 }

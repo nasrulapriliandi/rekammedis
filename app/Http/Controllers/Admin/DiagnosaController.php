@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Pasien;
+use App\Models\Diagnosa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class PasienController extends Controller
+class DiagnosaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class PasienController extends Controller
      */
     public function index()
     {
-        $pasiens = Pasien::all();
-        return view('pasien.pasien', compact('pasiens'));
+        $diagnosas = Diagnosa::all();
+        return view('diagnosa.diagnosa', compact('diagnosas'));
     }
 
     /**
@@ -25,6 +25,10 @@ class PasienController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function create()
+    {
+        //
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,18 +39,17 @@ class PasienController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nama' => 'required',
-            'umur' => 'required',
-            'alamat' => 'required',
+            'penyakit' => 'required',
+            'keterangan' => 'required'
         ]);
 
         if($validator->fails()) {
             return redirect()->back()->with('error', $validator->errors()->first());
         }
 
-        Pasien::create($request->all());
+        Diagnosa::create($request->all());
 
-        return redirect('/admin/pasien');
+        return redirect('/admin/diagnosa');
     }
 
     /**
@@ -81,19 +84,18 @@ class PasienController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'nama' => 'required',
-            'umur' => 'required',
-            'alamat' => 'required'
+            'penyakit' => 'required',
+            'keterangan' => 'required'
         ]);
 
         if($validator->fails()) {
             return redirect()->back()->with('error', $validator->errors()->first());
         }
 
-        $pasien = Pasien::where('id', $id)->firstOrFail();
-        $pasien->update($request->all());
+        $diagnosa = Diagnosa::where('id', $id)->firstOrFail();
+        $diagnosa->update($request->all());
 
-        return redirect()->back()->with('success', 'Data pasien berhasil diubah');
+        return redirect()->back()->with('success', 'Data diagnosa berhasil dihapus');
     }
 
     /**
@@ -104,8 +106,8 @@ class PasienController extends Controller
      */
     public function destroy($id)
     {
-        $pasien = Pasien::where('id', $id)->firstOrFail();
-        $pasien->delete();
-        return redirect()->back()->with('success', 'Data pasien berhasil dihapus');
+        $diagnosa = Diagnosa::where('id', $id)->firstOrFail();
+        $diagnosa->delete();
+        return redirect()->back()->with('success', 'Data diagnosa berhasil dihapus');
     }
 }
