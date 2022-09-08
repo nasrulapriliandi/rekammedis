@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\DiagnosaController;
+use App\Http\Controllers\Admin\ObatController;
 use App\Http\Controllers\Admin\PasienController as AdminPasienController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Models\Rekammedis;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,10 +22,13 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::middleware(['auth', 'checkLevel:admin'])->group(function(){
+
+Route::middleware(['auth', 'checkLevel:admin'])->group(function() {
     Route::resource('/admin/pasien', AdminPasienController::class);
-
+    Route::resource('/admin/diagnosa', DiagnosaController::class);
+    Route::resource('/admin/obat', ObatController::class);
+    Route::resource('/admin/rekammedis', Rekammedis::class);
 });
-Route::middleware(['auth', 'checkLevel:dokter'])->group(function(){
 
+Route::middleware(['auth', 'checkLevel:dokter'])->group(function() {
 });

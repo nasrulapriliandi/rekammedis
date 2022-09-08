@@ -14,14 +14,6 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <label for="rekammedis">No Rekam Medis</label>
-                            <input type="text" class="form-control" name="rekammedis" value="{{ old('rekammedis', $pasien->rekammedis) }}">
-                        </div>
-                        <div class="form-group">
-                            <label for="tanggal">Tanggal Daftar</label>
-                            <input type="text" class="form-control" name="tanggal" value="{{ old('tanggal', $pasien->tanggal) }}">
-                        </div>
-                        <div class="form-group">
                             <label for="nama">Nama Pasien</label>
                             <input type="text" class="form-control" name="nama" value="{{ old('nama', $pasien->nama) }}">
                         </div>
@@ -34,7 +26,7 @@
                             <input type="text" class="form-control" name="alamat" value="{{ old('alamat', $pasien->alamat) }}">
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary float-right">Tambah</button>
+                            <button type="submit" class="btn btn-primary float-right">Simpan</button>
                         </div>
                     </form>
                 </div>
