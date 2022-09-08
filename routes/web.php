@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DiagnosaController;
 use App\Http\Controllers\Admin\ObatController;
 use App\Http\Controllers\Admin\PasienController as AdminPasienController;
@@ -29,6 +30,7 @@ Route::middleware(['auth', 'checkLevel:admin'])->group(function() {
     Route::resource('/admin/diagnosa', DiagnosaController::class);
     Route::resource('/admin/obat', ObatController::class);
     Route::resource('/admin/rekammedis', RekammedisController::class);
+    Route::resource('/admin', DashboardController::class);
 });
 
 Route::middleware(['auth', 'checkLevel:dokter'])->group(function() {

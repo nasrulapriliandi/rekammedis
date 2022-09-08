@@ -11,7 +11,7 @@
             <br>
             @if(Auth::user()->level == 'admin')
                 <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
-                    <a class="nav-link" href="#"><i class="fas fa-home"></i><span>Dashboard Admin</span></a>
+                    <a class="nav-link" href="{{ route('admin.index') }}"><i class="fas fa-home"></i><span>Dashboard Admin</span></a>
                 </li>
 
                 <li class="{{ Request::is('pasien') ? 'active' : '' }}">

@@ -18,7 +18,7 @@
                         <h4>Data Pasien</h4>
                     </div>
                     <div class="card-body">
-                        10
+                        {{ $pasien }}
                     </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                         <h4>Data Diagnosa</h4>
                     </div>
                     <div class="card-body">
-                        22
+                        {{ $diagnosa }}
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                         <h4>Data Obat</h4>
                     </div>
                     <div class="card-body">
-                        13
+                        {{ $obat }}
                     </div>
                 </div>
             </div>
