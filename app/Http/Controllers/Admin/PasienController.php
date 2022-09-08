@@ -89,9 +89,11 @@ class PasienController extends Controller
         if($validator->fails()) {
             return redirect()->back()->with('error', $validator->errors()->first());
         }
-        
-        Pasien::where('id', $id)->firstOrFail()->update($request->all());
-        return redirect()->back()->with('success', 'Data pasien berhasil dihapus');
+
+        $pasien = Pasien::where('id', $id)->firstOrFail();
+        $pasien->update($request->all());
+
+        return redirect()->back()->with('success', 'Data pasien berhasil diubah');
     }
 
     /**
@@ -102,7 +104,8 @@ class PasienController extends Controller
      */
     public function destroy($id)
     {
-        Pasien::where('id', $id)->firstOrFail()->delete();
+        $pasien = Pasien::where('id', $id)->firstOrFail();
+        $pasien->delete();
         return redirect()->back()->with('success', 'Data pasien berhasil dihapus');
     }
 }

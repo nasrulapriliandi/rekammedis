@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Obat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ObatController extends Controller
 {
@@ -14,7 +16,8 @@ class ObatController extends Controller
      */
     public function index()
     {
-        //
+        $obats = Obat::all();
+        return view('obat.obat', compact('obats'));
     }
 
     /**
@@ -35,7 +38,18 @@ class ObatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'obat' => 'required',
+            'keterangan' => 'required'
+        ]);
+
+        if($validator->fails()) {
+            return redirect()->back()->with('error', $validator->errors()->first());
+        }
+
+        Obat::create($request->all());
+
+        return redirect('/admin/obat');
     }
 
     /**
@@ -69,7 +83,19 @@ class ObatController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'obat' => 'required',
+            'keterangan' => 'required'
+        ]);
+
+        if($validator->fails()) {
+            return redirect()->back()->with('error', $validator->errors()->first());
+        }
+        
+        $obat = Obat::where('id', $id)->firstOrFail();
+        $obat->update($request->all());
+
+        return redirect()->back()->with('success', 'Data obat berhasil dihapus');
     }
 
     /**
@@ -80,6 +106,9 @@ class ObatController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $obat = Obat::where('id', $id)->firstOrFail();
+        $obat->delete();
+
+        return redirect()->back()->with('success', 'Data obat berhasil dihapus');
     }
 }

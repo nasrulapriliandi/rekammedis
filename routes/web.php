@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DiagnosaController;
 use App\Http\Controllers\Admin\ObatController;
 use App\Http\Controllers\Admin\PasienController as AdminPasienController;
+use App\Http\Controllers\Admin\RekammedisController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Models\Rekammedis;
 use Illuminate\Support\Facades\Route;
@@ -27,7 +28,7 @@ Route::middleware(['auth', 'checkLevel:admin'])->group(function() {
     Route::resource('/admin/pasien', AdminPasienController::class);
     Route::resource('/admin/diagnosa', DiagnosaController::class);
     Route::resource('/admin/obat', ObatController::class);
-    Route::resource('/admin/rekammedis', Rekammedis::class);
+    Route::resource('/admin/rekammedis', RekammedisController::class);
 });
 
 Route::middleware(['auth', 'checkLevel:dokter'])->group(function() {

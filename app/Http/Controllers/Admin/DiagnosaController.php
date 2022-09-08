@@ -92,9 +92,10 @@ class DiagnosaController extends Controller
             return redirect()->back()->with('error', $validator->errors()->first());
         }
 
-        Diagnosa::where('id', $id)->firstOrFail()->update($request->all());
+        $diagnosa = Diagnosa::where('id', $id)->firstOrFail();
+        $diagnosa->update($request->all());
 
-        return redirect()->back()->with('success', 'Data diagnosa berhasil diubah');
+        return redirect()->back()->with('success', 'Data diagnosa berhasil dihapus');
     }
 
     /**
@@ -105,8 +106,8 @@ class DiagnosaController extends Controller
      */
     public function destroy($id)
     {
-        Diagnosa::where('id', $id)->firstOrFail()->delete();
-
-        return redirect()->back()->with('success', 'Data diagnosa berhasil diubah');
+        $diagnosa = Diagnosa::where('id', $id)->firstOrFail();
+        $diagnosa->delete();
+        return redirect()->back()->with('success', 'Data diagnosa berhasil dihapus');
     }
 }
