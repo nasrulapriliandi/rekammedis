@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Pasien;
+use App\Models\Obat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class PasienController extends Controller
+class ObatController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class PasienController extends Controller
      */
     public function index()
     {
-        $pasiens = Pasien::all();
-        return view('pasien.pasien', compact('pasiens'));
+        $obats = Obat::all();
+        return view('obat.obat', compact('obats'));
     }
 
     /**
@@ -25,28 +25,31 @@ class PasienController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function create()
+    {
+        //
+    }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
-     */ 
+     */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nama' => 'required',
-            'umur' => 'required',
-            'alamat' => 'required'
+            'obat' => 'required',
+            'keterangan' => 'required'
         ]);
 
         if($validator->fails()) {
             return redirect()->back()->with('error', $validator->errors()->first());
         }
 
-        Pasien::create($request->all());
+        Obat::create($request->all());
 
-        return redirect('/admin/pasien');
+        return redirect('/admin/obat');
     }
 
     /**
@@ -81,19 +84,18 @@ class PasienController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'nama' => 'required',
-            'umur' => 'required',
-            'alamat' => 'required'
+            'obat' => 'required',
+            'keterangan' => 'required'
         ]);
 
         if($validator->fails()) {
             return redirect()->back()->with('error', $validator->errors()->first());
         }
+        
+        $obat = Obat::where('id', $id)->firstOrFail();
+        $obat->update($request->all());
 
-        $pasien = Pasien::where('id', $id)->firstOrFail();
-        $pasien->update($request->all());
-
-        return redirect()->back()->with('success', 'Data pasien berhasil diubah');
+        return redirect()->back()->with('success', 'Data obat berhasil dihapus');
     }
 
     /**
@@ -104,8 +106,9 @@ class PasienController extends Controller
      */
     public function destroy($id)
     {
-        $pasien = Pasien::where('id', $id)->firstOrFail();
-        $pasien->delete();
-        return redirect()->back()->with('success', 'Data pasien berhasil dihapus');
+        $obat = Obat::where('id', $id)->firstOrFail();
+        $obat->delete();
+
+        return redirect()->back()->with('success', 'Data obat berhasil dihapus');
     }
 }
