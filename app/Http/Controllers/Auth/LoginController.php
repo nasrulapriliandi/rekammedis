@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Produk;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -22,14 +21,8 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt($attr)) {
-<<<<<<< HEAD
           $request->session()->regenerate();
           return redirect()->intended('/');
-
-=======
-            $request->session()->regenerate();
-            return redirect()->intended('/');
->>>>>>> 95d76bd (merge)
         }
     }
 

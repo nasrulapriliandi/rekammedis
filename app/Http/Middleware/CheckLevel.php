@@ -20,10 +20,10 @@ class CheckLevel
             return $next($request);
         }
         if($request->user()->level== 'admin'){
-            return redirect('/admin/dashboard');
+            return redirect('/admin');
         
         }else if($request->user()->level== 'dokter'){
-            return redirect('/dokter/dashboard');
+            return redirect('/dokter');
         }    
     }
 }

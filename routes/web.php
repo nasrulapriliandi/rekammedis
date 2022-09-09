@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ObatController;
 use App\Http\Controllers\Admin\PasienController as AdminPasienController;
 use App\Http\Controllers\Admin\RekammedisController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Dokter\DiagnosaController as DokterDiagnosaController;
 use App\Models\Rekammedis;
 use Illuminate\Support\Facades\Route;
 
@@ -20,8 +21,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/login', [LoginController::class, 'store']);
+Route::get('/', [LoginController::class, 'index'])->name('login');
+Route::post('/', [LoginController::class, 'store']);
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
@@ -34,4 +35,6 @@ Route::middleware(['auth', 'checkLevel:admin'])->group(function() {
 });
 
 Route::middleware(['auth', 'checkLevel:dokter'])->group(function() {
+    Route::resource('/dokter/diagnosa', DokterDiagnosaController::class);
+    Route::resource('/dokter', DokterDiagnosaController::class);
 });

@@ -15,20 +15,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-<<<<<<< HEAD
-        User::factory()->create([
-            'name'=>'Admin',
-            'email'=>'admin@gmail.com',
-            'level'=>'admin',
-            'password'=> bcrypt('password')
-        ]);
-        
-        User::factory()->create([
-            'name'=>'Dokter',
-            'email'=>'dokter@gmail.com',
-            'level'=>'dokter',
-            'password'=> bcrypt('password')
-=======
         User::create([
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
@@ -41,7 +27,6 @@ class UserSeeder extends Seeder
             'email' => 'dokter@gmail.com',
             'level' => 'dokter',
             'password' => bcrypt('password')
->>>>>>> 95d76bd (merge)
         ]);
     }
 }
