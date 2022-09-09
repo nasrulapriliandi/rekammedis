@@ -38,6 +38,7 @@ class PasienController extends Controller
             'nama' => 'required',
             'umur' => 'required',
             'alamat' => 'required',
+            'jeniskelamin' => 'required'
         ]);
 
         if($validator->fails()) {
@@ -83,7 +84,8 @@ class PasienController extends Controller
         $validator = Validator::make($request->all(), [
             'nama' => 'required',
             'umur' => 'required',
-            'alamat' => 'required'
+            'alamat' => 'required',
+            'jeniskelamin' => 'required'
         ]);
 
         if($validator->fails()) {

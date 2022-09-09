@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('pasiens', function (Blueprint $table) {
             $table->id();
-            $table->integer('norekammedis');
             $table->string('nama');
             $table->integer('umur');
             $table->text('alamat');

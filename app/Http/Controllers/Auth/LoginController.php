@@ -22,14 +22,8 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt($attr)) {
-<<<<<<< HEAD
-          $request->session()->regenerate();
-          return redirect()->intended('/');
-
-=======
             $request->session()->regenerate();
-            return redirect()->intended('/');
->>>>>>> 95d76bd (merge)
+            return redirect()->intended('/admin');
         }
     }
 

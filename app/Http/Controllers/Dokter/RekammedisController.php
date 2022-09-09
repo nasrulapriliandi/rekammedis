@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Dokter;
 
 use App\Http\Controllers\Controller;
 use App\Models\Diagnosa;
@@ -8,6 +8,7 @@ use App\Models\Obat;
 use App\Models\Pasien;
 use App\Models\Rekammedis;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class RekammedisController extends Controller
 {
@@ -43,7 +44,20 @@ class RekammedisController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'pasien_id' => 'required',
+            'diagnosa_id' => 'required',
+            'obat_id' => 'required',
+            'tgl_berobat' => 'required'
+        ]);
+
+        if($validator->fails()) {
+            return redirect()->back()->with('error', $validator->errors()->first());
+        }
+
+        Rekammedis::create($request->all());
+
+        return redirect('/dokter/rekammedis');
     }
 
     /**
@@ -77,7 +91,21 @@ class RekammedisController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'pasien_id' => 'required',
+            'diagnosa_id' => 'required',
+            'obat_id' => 'required',
+            'tgl_berobat' => 'required'
+        ]);
+
+        if($validator->fails()) {
+            return redirect()->back()->with('error', $validator->errors()->first());
+        }
+
+        $rekam = Rekammedis::where('id', $id)->firstOrFail();
+        $rekam->update($request->all());
+        return redirect()->back()->with('success', 'Data rekam medis berhasil diubah');
+
     }
 
     /**
@@ -88,6 +116,8 @@ class RekammedisController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $rekam = Rekammedis::where('id', $id)->firstOrFail();
+        $rekam->delete();
+        return redirect()->back()->with('success', 'Data rekam medis berhasil dihapus');
     }
 }

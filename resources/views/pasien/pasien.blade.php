@@ -27,7 +27,6 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>No Rekam Medis</th>
                                     <th>Nama</th>
                                     <th>Umur</th>
                                     <th>Alamat</th>
@@ -39,11 +38,10 @@
                                 @foreach($pasiens as $pasien)
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
-                                        <td>{{ $pasien->norekammedis }}</td>
                                         <td>{{ $pasien->nama }}</td>
                                         <td>{{ $pasien->umur }}</td>
                                         <td>{{ $pasien->alamat }}</td>
-                                        <td>{{ $pasien->JenisKelamin }}</td>
+                                        <td>{{ $pasien->jeniskelamin }}</td>
                                         <td>
                                             <a href="{{route('pasien.store')}}" class="btn btn-primary btn-action mr-1" data-target="#edit-{{$pasien->id}}" data-toggle="modal"
                                                 title="Edit"><i class="fas fa-pencil-alt"></i></a>

@@ -17,11 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-<<<<<<< HEAD
-            $table->enum('level',['admin','dokter']);
-=======
             $table->enum('level', ['admin', 'dokter']);
->>>>>>> 95d76bd (merge)
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
