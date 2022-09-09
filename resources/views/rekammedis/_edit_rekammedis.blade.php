@@ -13,6 +13,10 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group">
+                            <label for="norekammedis">No Rekam Medis</label>
+                            <input type="number" class="form-control" value="{{ old('norekammedis', $r->norekammedis)}}" name="norekammedis">
+                        </div>
+                        <div class="form-group">
                             <label for="_id">Nama Pasien</label>
                             <select name="pasien_id" class="form-control">
                                 <option value=""> -- Pilih Pasien -- </option>

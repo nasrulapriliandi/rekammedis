@@ -22,8 +22,12 @@
                             <input type="text" class="form-control" name="umur" value="{{ old('umur', $pasien->umur) }}">
                         </div>
                         <div class="form-group">
-                            <label for="alamat">alamat</label>
+                            <label for="umur">Alamat</label>
                             <input type="text" class="form-control" name="alamat" value="{{ old('alamat', $pasien->alamat) }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="alamat">Jenis kelamin</label>
+                            <input type="text" class="form-control" name="jeniskelamin" value="{{ old('jeniskelamin', $pasien->jeniskelamin) }}">
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary float-right">Simpan</button>

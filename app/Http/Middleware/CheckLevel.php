@@ -21,9 +21,9 @@ class CheckLevel
         }
         if($request->user()->level== 'admin'){
             return redirect('/admin');
-        
+
         }else if($request->user()->level== 'dokter'){
             return redirect('/dokter');
-        }    
+        }
     }
 }

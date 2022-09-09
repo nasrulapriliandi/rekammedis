@@ -10,6 +10,10 @@
                 <form action="{{ route('rekammedis.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
+                        <label for="norekammedis">No Rekam Medis</label>
+                        <input type="number" class="form-control" name="norekammedis">
+                    </div>
+                    <div class="form-group">
                         <label for="_id">Nama Pasien</label>
                         <select name="pasien_id" class="form-control">
                             <option value=""> -- Pilih Pasien -- </option>

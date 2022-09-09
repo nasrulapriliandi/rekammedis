@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nama');
             $table->integer('umur');
             $table->text('alamat');
+            $table->text('jeniskelamin');
             $table->timestamps();
         });
     }

@@ -22,6 +22,13 @@
                         <input type="text" class="form-control" name="alamat">
                     </div>
                     <div class="form-group">
+                        <label for="alamat">Jenis Kelamin</label>
+                        <select class="form-control" name="jeniskelamin">
+                            <option value="laki-laki">Laki - laki</option>
+                            <option value="perempuan">Perempuan</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <button type="submit" class="btn btn-primary float-right">Tambah</button>
                     </div>
                 </form>

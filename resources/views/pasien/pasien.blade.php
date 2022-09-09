@@ -30,6 +30,7 @@
                                     <th>Nama</th>
                                     <th>Umur</th>
                                     <th>Alamat</th>
+                                    <th>Jenis Kelamin</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -40,6 +41,7 @@
                                         <td>{{ $pasien->nama }}</td>
                                         <td>{{ $pasien->umur }}</td>
                                         <td>{{ $pasien->alamat }}</td>
+                                        <td>{{ $pasien->jeniskelamin }}</td>
                                         <td>
                                             <a href="{{route('pasien.store')}}" class="btn btn-primary btn-action mr-1" data-target="#edit-{{$pasien->id}}" data-toggle="modal"
                                                 title="Edit"><i class="fas fa-pencil-alt"></i></a>
