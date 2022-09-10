@@ -40,7 +40,7 @@
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{ $pasien->nama }}</td>
                                         <td>{{ $pasien->umur }}</td>
-                                        <td>{{ $pasien->alamat }}</td>
+                                        <td class="d-inline-block text-truncate" style="max-width: 150px;">{{ $pasien->alamat }}</td>
                                         <td>{{ $pasien->jeniskelamin }}</td>
                                         <td>
                                             <a href="{{route('pasien.store')}}" class="btn btn-primary btn-action mr-1" data-target="#edit-pasien" data-toggle="modal"

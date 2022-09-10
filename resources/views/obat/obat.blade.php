@@ -37,7 +37,7 @@
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{ $obat->obat }}</td>
-                                        <td>{{ $obat->keterangan }}</td>
+                                        <td class="d-inline-block text-truncate" style="max-width: 250px;">{{ $obat->keterangan }}</td>
                                         <td>
                                             <a href="#" class="btn btn-primary btn-action mr-1" data-target="#edit-obat" data-id="{{ $obat->id }}" data-toggle="modal"
                                                 title="Edit"><i class="fas fa-pencil-alt"></i></a>
