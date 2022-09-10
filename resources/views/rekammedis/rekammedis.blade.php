@@ -31,11 +31,7 @@
                                     <th>No Rekam Medis</th>
                                     <th>Nama Pasien</th>
                                     <th>Diagnosa</th>
-                                    <th>Obat</th>
-                                    <th>Tanggal Berobat</th>
-                                    @if(Auth::user()->level != 'admin')
                                     <th>Aksi</th>
-                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,17 +40,20 @@
                                         <td>{{ $r->norekammedis }}</td>
                                         <td>{{ $r->pasien->nama }}</td>
                                         <td>{{ $r->diagnosa->penyakit }}</td>
-                                        <td>{{ $r->obat->obat }}</td>
-                                        <td>{{ $r->tgl_berobat }}</td>
                                         @if(Auth::user()->level != 'admin')
                                         <td>
-                                            <a href="#" class="btn btn-primary btn-action mr-1" data-target="#edit-{{$r->id}}" data-toggle="modal"
+                                            <a href="{{ route('rekammedis.show', $r->id ) }}" class="btn btn-success btn-action mr-1" title="Detail"><i class="fas fa-info"></i></a>
+                                            <a href="#" class="btn btn-primary btn-action mr-1" data-target="#edit-rekam" data-toggle="modal" data-id="{{ $r->id }}"
                                                 title="Edit"><i class="fas fa-pencil-alt"></i></a>
                                             <form action="{{ route('rekammedis.destroy', $r) }}" class="d-inline" method="POST">
                                                 @csrf
                                                 @method('delete')
                                                 <button class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"><i class="fas fa-trash"></i></button>
                                             </form>
+                                        </td>
+                                        @else
+                                        <td>
+                                            <a href="{{ route('admin.rekammedis.detail', $r->id ) }}" class="btn btn-success btn-action mr-1" title="Detail"><i class="fas fa-info"></i></a>
                                         </td>
                                         @endif
                                     </tr>
@@ -69,5 +68,20 @@
 </section>
 @include('rekammedis._tambah_rekammedis')
 @include('rekammedis._edit_rekammedis')
+
+<script>
+    $(document).on('click','.btn-action',function(){
+        var id = $(this).attr('data-id');
+        $.get(`/dokter/rekammedis/${id}/edit`, function (data) {
+            //success data
+            $("#edit-form").attr('action', 'http://127.0.0.1:8000/dokter/rekammedis/' + id)
+            $('#edit-norekmedis').val(data.norekammedis);
+            $(`#edit-pasien option[value=${data.pasien_id}]`).attr('selected', 'selected');
+            $(`#edit-diagnosa option[value=${data.diagnosa_id}]`).attr('selected', 'selected');
+            $(`#edit-obat option[value=${data.obat_id}]`).attr('selected', 'selected');
+            $('#edit-tgl').val(data.tgl_berobat);
+        });
+    });
+</script>
 @endsection
 

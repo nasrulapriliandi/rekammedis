@@ -54,7 +54,8 @@ class RekammedisController extends Controller
      */
     public function show($id)
     {
-        //
+        $rekam = Rekammedis::with('pasien', 'diagnosa', 'obat')->where('id', $id)->firstOrFail();
+        return view('rekammedis.detail_rekammedis', compact('rekam'));
     }
 
     /**

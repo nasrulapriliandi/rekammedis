@@ -60,7 +60,8 @@ class ObatController extends Controller
      */
     public function show($id)
     {
-        //
+        $obat = Obat::where('id', $id)->firstOrFail();
+        return response()->json($obat);
     }
 
     /**

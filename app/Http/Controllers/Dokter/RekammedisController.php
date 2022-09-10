@@ -68,7 +68,11 @@ class RekammedisController extends Controller
      */
     public function show($id)
     {
-        //
+        $rekam = Rekammedis::with('pasien', 'diagnosa', 'obat')->where('id', $id)->firstOrFail();
+        $pasien = Pasien::all();
+        $diagnosa = Diagnosa::all();
+        $obat = Obat::all();
+        return view('rekammedis.detail_rekammedis', compact('rekam','pasien', 'diagnosa', 'obat'));
     }
 
     /**
@@ -79,7 +83,9 @@ class RekammedisController extends Controller
      */
     public function edit($id)
     {
-        //
+        $rekammedis = Rekammedis::where('id', $id)->firstOrFail();
+        return response()->json($rekammedis);
+
     }
 
     /**
@@ -118,6 +124,6 @@ class RekammedisController extends Controller
     {
         $rekam = Rekammedis::where('id', $id)->firstOrFail();
         $rekam->delete();
-        return redirect()->back()->with('success', 'Data rekam medis berhasil dihapus');
+        return redirect('/dokter/rekammedis');
     }
 }

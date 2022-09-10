@@ -39,7 +39,7 @@
                                         <td>{{ $obat->obat }}</td>
                                         <td>{{ $obat->keterangan }}</td>
                                         <td>
-                                            <a href="#" class="btn btn-primary btn-action mr-1" data-target="#edit-{{$obat->id}}" data-toggle="modal"
+                                            <a href="#" class="btn btn-primary btn-action mr-1" data-target="#edit-obat" data-id="{{ $obat->id }}" data-toggle="modal"
                                                 title="Edit"><i class="fas fa-pencil-alt"></i></a>
                                             <form action="{{ route('obat.destroy', $obat) }}" class="d-inline" method="POST">
                                                 @csrf
@@ -60,5 +60,17 @@
 
 @include('obat._tambah_obat')
 @include('obat._edit_obat')
+
+<script>
+    $(document).on('click','.btn-action',function(){
+        var id = $(this).attr('data-id');
+        $.get(`/admin/obat/${id}`, function (data) {
+            //success data
+            $("#edit-form").attr('action', 'http://127.0.0.1:8000/admin/obat/' + id)
+            $('#edit-nama-obat').val(data.obat);
+            $('#edit-keterangan').val(data.keterangan);     
+        });
+    });
+</script>
 @endsection
 

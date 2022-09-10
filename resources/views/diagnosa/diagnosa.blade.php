@@ -39,7 +39,7 @@
                                         <td>{{ $diagnosa->penyakit }}</td>
                                         <td>{{ $diagnosa->keterangan }}</td>
                                         <td>
-                                            <a href="#" class="btn btn-primary btn-action mr-1" data-target="#edit-{{$diagnosa->id}}" data-toggle="modal"
+                                            <a href="#" class="btn btn-primary btn-action mr-1" data-target="#edit-diagnosa" data-id="{{ $diagnosa->id }}" data-toggle="modal"
                                                 title="Edit"><i class="fas fa-pencil-alt"></i></a>
                                             <form action="{{ route('diagnosa.destroy', $diagnosa) }}" class="d-inline" method="POST">
                                                 @csrf
@@ -60,5 +60,17 @@
 
 @include('diagnosa._tambah_diagnosa')
 @include('diagnosa._edit_diagnosa')
+
+<script>
+    $(document).on('click','.btn-action',function(){
+        var id = $(this).attr('data-id');
+        $.get(`/admin/diagnosa/${id}`, function (data) {
+            //success data
+            $("#edit-form").attr('action', 'http://127.0.0.1:8000/admin/diagnosa/' + id)
+            $('#edit-penyakit').val(data.penyakit);
+            $('#edit-keterangan').val(data.keterangan);          
+        });
+    });
+</script>
 @endsection
 

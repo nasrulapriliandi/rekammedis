@@ -1,6 +1,5 @@
 {{-- Add Modal --}}
-@foreach($rekammedis as $r)
-    <div class="modal fade" id="edit-{{$r->id}}">
+    <div class="modal fade" id="edit-rekam">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header d-flex justify-content-center align-items-center">
@@ -8,44 +7,44 @@
                 </div>
 
                 <div class="modal-body">
-                    <form action="{{ route('rekammedis.update', $r) }}" method="post"
+                    <form id="edit-form" method="post"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
                             <label for="norekammedis">No Rekam Medis</label>
-                            <input type="number" class="form-control" value="{{ old('norekammedis', $r->norekammedis)}}" name="norekammedis">
+                            <input type="number" class="form-control" id="edit-norekmedis" name="norekammedis">
                         </div>
                         <div class="form-group">
                             <label for="_id">Nama Pasien</label>
-                            <select name="pasien_id" class="form-control">
+                            <select name="pasien_id" id="edit-pasien" class="form-control">
                                 <option value=""> -- Pilih Pasien -- </option>
                                 @foreach($pasien as $p)
-                                    <option value="{{ $p->id }}" {{ $p->id == $r->pasien_id ? 'selected' : '' }}>{{ $p->nama }}</option>
+                                    <option value="{{ $p->id }}">{{ $p->nama }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="diagnosa_id">Diagnosa</label>
-                            <select name="diagnosa_id" class="form-control">
+                            <select name="diagnosa_id" id="edit-diagnosa" class="form-control">
                                 <option value=""> -- Pilih Diagnosa -- </option>
                                 @foreach($diagnosa as $d)
-                                    <option value="{{ $d->id }}" {{ $d->id == $r->diagnosa_id ? 'selected' : '' }}>{{ $d->penyakit }}</option>
+                                    <option value="{{ $d->id }}">{{ $d->penyakit }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="obat_id">Obat</label>
-                            <select name="obat_id" class="form-control">
+                            <select name="obat_id" id="edit-obat" class="form-control">
                                 <option value=""> -- Pilih Obat -- </option>
                                 @foreach($obat as $o)
-                                    <option value="{{ $o->id }}" {{ $o->id == $r->obat_id ? 'selected' : '' }}>{{ $o->obat }}</option>
+                                    <option value="{{ $o->id }}">{{ $o->obat }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="tgl_berobat">Tanggal berobat</label>
-                            <input type="date" class="form-control" name="tgl_berobat" value="{{ old('tgl_berobat', $r->tgl_berobat) }}">
+                            <input type="date" class="form-control" id="edit-tgl" name="tgl_berobat">
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary float-right">Simpan</button>
@@ -55,5 +54,4 @@
             </div>
         </div>
     </div>
-@endforeach
 {{-- Add Modal --}}
