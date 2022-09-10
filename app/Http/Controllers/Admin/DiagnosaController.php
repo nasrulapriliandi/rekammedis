@@ -60,7 +60,8 @@ class DiagnosaController extends Controller
      */
     public function show($id)
     {
-        //
+        $diagnosa = Diagnosa::where('id', $id)->firstOrFail();
+        return response()->json($diagnosa);
     }
 
     /**

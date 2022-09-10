@@ -1,7 +1,5 @@
 {{-- Add Modal --}}
-@foreach($obats as $obat)
-
-    <div class="modal fade" id="edit-{{$obat->id}}">
+    <div class="modal fade" id="edit-obat">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header d-flex justify-content-center align-items-center">
@@ -9,25 +7,24 @@
                 </div>
 
                 <div class="modal-body">
-                    <form action="{{ route('obat.update', $obat) }}" method="post"
+                    <form id="edit-form" action="{{ route('obat.update', $obat) }}" method="post"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
                             <label for="obat">Nama obat</label>
-                            <input type="text" class="form-control" name="obat" value="{{ old('obat', $obat->obat) }}">
+                            <input type="text" id="edit-nama-obat" class="form-control" name="obat">
                         </div>
                         <div class="form-group">
                             <label for="keterangan">Keterangan</label>
-                            <input type="text" class="form-control" name="keterangan" value="{{ old('keterangan', $obat->keterangan) }}">
+                            <input type="text" id="edit-keterangan" class="form-control" name="keterangan">
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary float-right">Tambah</button>
+                            <button type="submit" class="btn btn-primary float-right">Simpan</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-@endforeach
 {{-- Add Modal --}}

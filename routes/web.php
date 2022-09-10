@@ -20,16 +20,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [LoginController::class, 'index'])->name('login');
-Route::post('/', [LoginController::class, 'store']);
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
+Route::middleware('guest')->group(function() {
+    Route::get('/', [LoginController::class, 'index'])->name('login');
+    Route::post('/', [LoginController::class, 'store']);
+});
 
 Route::middleware(['auth', 'checkLevel:admin'])->group(function() {
     Route::resource('/admin/pasien', AdminPasienController::class);
     Route::resource('/admin/diagnosa', DiagnosaController::class);
     Route::resource('/admin/obat', ObatController::class);
-    Route::resource('/admin/rekammedis', AdminRekammedisController::class);
+    Route::get('/admin/rekammedis', [AdminRekammedisController::class, 'index'])->name('admin.rekammedis');
+    Route::get('/admin/rekammedis/{id}', [AdminRekammedisController::class, 'show'])->name('admin.rekammedis.detail');
+
     Route::resource('/admin', DashboardController::class);
 });
 

@@ -58,7 +58,8 @@ class PasienController extends Controller
      */
     public function show($id)
     {
-        //
+        $pasien = Pasien::where('id', $id)->firstOrFail();
+        return response()->json($pasien);
     }
 
     /**
