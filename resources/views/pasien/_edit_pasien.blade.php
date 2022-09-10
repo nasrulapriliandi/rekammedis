@@ -7,7 +7,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <form id="edit-form" action="{{ route('pasien.update', $pasien) }}" method="post"
+                    <form id="edit-form" method="post"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')

@@ -71,9 +71,9 @@
         </div>
     </div>
 </section>
-
+@if(Auth::user()->level != 'admin')
 @include('rekammedis._edit_rekammedis')
-
+@endif
 <script>
     $(document).on('click','.btn-action',function(){
         var id = $(this).attr('data-id');

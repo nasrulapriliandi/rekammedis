@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('rekammedis', function (Blueprint $table) {
             $table->id();
             $table->integer('norekammedis');
-            $table->foreignId('pasien_id')->constrained('pasiens');
-            $table->foreignId('diagnosa_id')->constrained('diagnosas');
-            $table->foreignId('obat_id')->constrained('obats');
+            $table->foreignId('pasien_id')->constrained('pasiens')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('diagnosa_id')->constrained('diagnosas')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('obat_id')->constrained('obats')->onDelete('cascade')->onUpdate('cascade');
             $table->date('tgl_berobat');
             $table->timestamps();
         });
